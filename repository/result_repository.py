@@ -74,6 +74,26 @@ class ResultRepository(Repository):
 
         return result
 
+    def get_all(self):
+        cursor = self.cnx.cursor()
+
+        cursor.execute(
+            """SELECT id, process_id, result FROM {}
+            """.format(self.table),
+            []
+        )
+
+        results = cursor.fetchall()
+
+        if not results:
+            return []
+
+        result = map(lambda x: Result(id=x[0], process_id=x[1], result=x[2]), results)
+
+        cursor.close()
+
+        return result
+
 @dataclass
 class Result:
     id: int

@@ -79,6 +79,31 @@ class SensorDataRepository(Repository):
 
         return SensorData(id=sensor_data[0], sensor_id=sensor_data[1], process_id=sensor_data[2], value=sensor_data[3])
 
+    def get_all(self):
+        cursor = self.cnx.cursor()
+
+        cursor.execute(
+            """SELECT id, sensor_id, process_id, value FROM {}
+            """.format(self.table),
+
+            []
+        )
+
+        sensor_datas = cursor.fetchall()
+
+        if not sensor_datas:
+            return []
+
+        result = map(
+                lambda sensor_data: SensorData(id=sensor_data[0], sensor_id=sensor_data[1], process_id=sensor_data[2], value=sensor_data[3]),
+                sensor_datas
+            )
+
+        cursor.close()
+
+        return result
+
+
 @dataclass
 class SensorData:
     id: int

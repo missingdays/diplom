@@ -1,4 +1,4 @@
-from sklearn.naive_bayse import GaussianNB as GNB
+from sklearn.naive_bayes import GaussianNB as GNB
 from .model import Model
 
 class GaussianNB(Model):

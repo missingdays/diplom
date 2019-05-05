@@ -1,2 +1,6 @@
 from .sensor_repository import SensorRepository
 from .sensor_parameter_repository import SensorParameterRepository
+from .sensor_data_repository import SensorDataRepository
+from .result_repository import ResultRepository
+from .model_repository import ModelRepository
+from .train_data import TrainData
